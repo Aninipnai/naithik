@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="rps.css">
+    <style>
+        .rps-container {
+            background: linear-gradient(to bottom, #ff0000, #ffff00);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .choices {
+            margin-top: 20px;
+        }
+
+        button.game-btn {
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            background-color: #2196F3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            transition: transform 0.2s ease;
+        }
+
+        button.game-btn:hover {
+            background-color: #0e81ce;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="rps-container">
+        <h1>Rock Paper Scissors</h1>
+        <div id="output-rps"></div>
+        <div class="choices">
+            <button class="game-btn" onclick="playGame('rock')">Rock</button>
+            <button class="game-btn" onclick="playGame('paper')">Paper</button>
+            <button class="game-btn" onclick="playGame('scissors')">Scissors</button>
+        </div>
+    </div>
+    <script src="rps.js"></script>
+    <script>
+        function playGame(playerChoice) {
+            const choices = ['rock', 'paper', 'scissors'];
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+            // Display the computer's choice
+            document.getElementById('output-rps').innerHTML = 'Computer chose: ' + computerChoice;
+
+            let result = '';
+
+            // Add your logic to determine the result based on playerChoice and computerChoice
+            if (playerChoice === computerChoice) {
+                result = 'It\'s a tie!';
+            } else if (
+                (playerChoice === 'rock' && computerChoice === 'scissors') ||
+                (playerChoice === 'paper' && computerChoice === 'rock') ||
+                (playerChoice === 'scissors' && computerChoice === 'paper')
+            ) {
+                result = 'You win!';
+            } else {
+                result = 'Computer wins!';
+            }
+
+            // Display the result
+            document.getElementById('output-rps').innerHTML += '<br>' + result;
+        }
+    </script>
+</body>
+</html>
